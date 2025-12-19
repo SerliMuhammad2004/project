@@ -23,6 +23,9 @@ body {
     flex-direction: column;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    position: fixed;
+    height: 100vh;
+    z-index: 1000;
 }
 
 .sidebar.collapsed {
@@ -34,7 +37,7 @@ body {
     position: fixed;
     top: 20px;
     left: 20px;
-    z-index: 1000;
+    z-index: 1001;
     background-color: #2c3e50;
     color: white;
     border: none;
@@ -106,7 +109,9 @@ body {
     flex-grow: 1;
     padding: 30px;
     overflow-y: auto;
-    transition: margin-left 0.3s ease;
+    transition: all 0.3s ease;
+    margin-left: 250px;
+    width: calc(100% - 250px);
 }
 
 .main-content.expanded {
@@ -1008,38 +1013,18 @@ table tbody tr:hover {
         z-index: 999;
     }
     
-    .sidebar-header {
-        padding: 0 20px 0 0;
-        border-bottom: none;
-        margin-bottom: 0;
-        flex-shrink: 0;
+    .main-content {
+        margin-left: 0;
+        width: 100%;
     }
     
-    .sidebar-menu {
-        display: flex;
-        flex-grow: 1;
-        justify-content: flex-end;
-        gap: 5px;
+    .sidebar.collapsed {
+        transform: translateX(-100%);
     }
     
-    .sidebar-menu li {
-        margin-bottom: 0;
-    }
-    
-    .sidebar-menu a {
-        border-left: none;
-        border-bottom: 4px solid transparent;
-        padding: 10px 15px;
-    }
-    
-    .sidebar-menu a:hover,
-    .sidebar-menu a.active {
-        border-left: none;
-        border-bottom: 4px solid #3498db;
-    }
-    
-    .sidebar-footer {
-        display: none;
+    .main-content.expanded {
+        margin-left: 0;
+        width: 100%;
     }
 }
 
@@ -1124,20 +1109,10 @@ table tbody tr:hover {
 }
 
 @media (max-width: 480px) {
-    .sidebar {
-        flex-direction: column;
-        padding: 15px;
-    }
-    
     .sidebar-header {
-        padding: 0;
+        padding: 0 15px 15px;
         margin-bottom: 15px;
         text-align: center;
-    }
-    
-    .sidebar-menu {
-        flex-direction: column;
-        width: 100%;
     }
     
     .sidebar-menu a {
