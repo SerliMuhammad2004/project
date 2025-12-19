@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Inventaris - Laporan</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>Sistem Inventaris</h1>
+            <p>Kelola Barang Anda</p>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li><a href="#" onclick="navigateTo('dashboard')"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="#" onclick="navigateTo('inventaris')"><i class="fas fa-boxes"></i> Inventaris</a></li>
+            <li><a href="#" onclick="navigateTo('pengecekan')"><i class="fas fa-clipboard-check"></i> Pengecekan</a></li>
+            <li><a href="#" onclick="navigateTo('laporan')" class="active"><i class="fas fa-chart-bar"></i> Laporan</a></li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <p>© 2024 Sistem Inventaris</p>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <div>
+                <h1>Laporan</h1>
+                <p>Ringkasan dan laporan inventaris</p>
+            </div>
+            <div>
+                <button class="btn btn-warning" onclick="filterLaporanByPeriod()">
+                    Filter Periode
+                </button>
+                <button class="btn btn-success" onclick="downloadReport()">
+                    <i class="fas fa-download"></i> Download PDF
+                </button>
+            </div>
+        </div>
+        
+        <!-- Filter Periode -->
+        <div class="period-filter">
+            <h3>Pilih Periode Laporan</h3>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="filterBulanLaporan">Bulan</label>
+                    <select id="filterBulanLaporan">
+                        <option value="01">Januari</option>
+                        <option value="02">Februari</option>
+                        <option value="03">Maret</option>
+                        <option value="04">April</option>
+                        <option value="05">Mei</option>
+                        <option value="06">Juni</option>
+                        <option value="07">Juli</option>
+                        <option value="08">Agustus</option>
+                        <option value="09">September</option>
+                        <option value="10">Oktober</option>
+                        <option value="11">November</option>
+                        <option value="12">Desember</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="filterTahunLaporan">Tahun</label>
+                    <input type="number" id="filterTahunLaporan" min="2020" max="2030" value="2024">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Statistik Cards -->
+        <div class="stats-cards" style="margin-bottom: 30px;">
+            <div class="card border-left-blue">
+                <h3>Total Barang</h3>
+                <div class="value">78</div>
+                <p>Semua jenis barang inventaris</p>
+            </div>
+            
+            <div class="card border-left-green">
+                <h3>Kondisi Baik</h3>
+                <div class="value">73</div>
+                <p>Barang dalam kondisi baik</p>
+            </div>
+            
+            <div class="card border-left-orange">
+                <h3>Rusak Ringan</h3>
+                <div class="value">3</div>
+                <p>Barang dengan kerusakan ringan</p>
+            </div>
+            
+            <div class="card border-left-red">
+                <h3>Rusak Berat</h3>
+                <div class="value">2</div>
+                <p>Barang dengan kerusakan berat</p>
+            </div>
+        </div>
+        
+        <!-- Tabel Laporan -->
+        <div class="table-container">
+            <h2>Ringkasan Inventaris - Desember 2024</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>NO</th>
+                        <th>KODE</th>
+                        <th>NAMA BARANG</th>
+                        <th>MEREK/TIPE</th>
+                        <th>TAHUN</th>
+                        <th>JUMLAH</th>
+                        <th>PENGGUNAAN</th>
+                        <th>KONDISI</th>
+                        <th>TGL PENGECEKAN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>INV-001</td>
+                        <td>Laptop Dell</td>
+                        <td>Dell Latitude 5420</td>
+                        <td>2022</td>
+                        <td>10</td>
+                        <td>Kantor</td>
+                        <td><span class="badge badge-success">Baik</span></td>
+                        <td>2024-12-15</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>INV-002</td>
+                        <td>Printer</td>
+                        <td>HP LaserJet Pro</td>
+                        <td>2021</td>
+                        <td>5</td>
+                        <td>Administrasi</td>
+                        <td><span class="badge badge-success">Baik</span></td>
+                        <td>2024-12-15</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>INV-003</td>
+                        <td>Meja Kerja</td>
+                        <td>Olympic</td>
+                        <td>2020</td>
+                        <td>25</td>
+                        <td>Kantor</td>
+                        <td><span class="badge badge-warning">Rusak Ringan</span></td>
+                        <td>2024-12-10</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>INV-004</td>
+                        <td>Kursi Kantor</td>
+                        <td>Informa Ergonomic</td>
+                        <td>2021</td>
+                        <td>30</td>
+                        <td>Kantor</td>
+                        <td><span class="badge badge-success">Baik</span></td>
+                        <td>2024-12-12</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>INV-005</td>
+                        <td>AC</td>
+                        <td>Daikin 1.5 PK</td>
+                        <td>2019</td>
+                        <td>8</td>
+                        <td>Ruang Meeting</td>
+                        <td><span class="badge badge-warning">Rusak Ringan</span></td>
+                        <td>2024-12-08</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

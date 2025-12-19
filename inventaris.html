@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Inventaris - Inventaris</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>Sistem Inventaris</h1>
+            <p>Kelola Barang Anda</p>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li><a href="#" onclick="navigateTo('dashboard')"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="#" onclick="navigateTo('inventaris')" class="active"><i class="fas fa-boxes"></i> Inventaris</a></li>
+            <li><a href="#" onclick="navigateTo('pengecekan')"><i class="fas fa-clipboard-check"></i> Pengecekan</a></li>
+            <li><a href="#" onclick="navigateTo('laporan')"><i class="fas fa-chart-bar"></i> Laporan</a></li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <p>© 2024 Sistem Inventaris</p>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <div>
+                <h1>Inventaris</h1>
+                <p id="periodInfoInventaris">Kelola data barang inventaris</p>
+            </div>
+            <button class="btn btn-primary" onclick="showAddItemModal()">
+                <i class="fas fa-plus"></i> Tambah Barang
+            </button>
+        </div>
+        
+        <!-- Filter Periode -->
+        <div class="period-filter" id="inventoryFilter">
+            <h3>Filter Berdasarkan Periode</h3>
+            <form id="periodFormInventaris" onsubmit="event.preventDefault(); filterInventoryByPeriod();">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="filterBulanInventaris">Bulan</label>
+                        <select id="filterBulanInventaris">
+                            <option value="">Pilih Bulan</option>
+                            <option value="01">Januari</option>
+                            <option value="02">Februari</option>
+                            <option value="03">Maret</option>
+                            <option value="04">April</option>
+                            <option value="05">Mei</option>
+                            <option value="06">Juni</option>
+                            <option value="07">Juli</option>
+                            <option value="08">Agustus</option>
+                            <option value="09">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="filterTahunInventaris">Tahun</label>
+                        <input type="number" id="filterTahunInventaris" min="2020" max="2030" placeholder="Contoh: 2024">
+                    </div>
+                    
+                    <div class="filter-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i> Cari
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Tabel Inventaris -->
+        <div class="table-container">
+            <table id="inventoryTable">
+                <thead>
+                    <tr>
+                        <th>KODE</th>
+                        <th>NAMA BARANG</th>
+                        <th>MEREK/TIPE</th>
+                        <th>TAHUN</th>
+                        <th>JUMLAH</th>
+                        <th>PENGGUNAAN</th>
+                        <th>KONDISI</th>
+                        <th>AKSI</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Inventaris - Pengecekan</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>Sistem Inventaris</h1>
+            <p>Kelola Barang Anda</p>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li><a href="#" onclick="navigateTo('dashboard')"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="#" onclick="navigateTo('inventaris')"><i class="fas fa-boxes"></i> Inventaris</a></li>
+            <li><a href="#" onclick="navigateTo('pengecekan')" class="active"><i class="fas fa-clipboard-check"></i> Pengecekan</a></li>
+            <li><a href="#" onclick="navigateTo('laporan')"><i class="fas fa-chart-bar"></i> Laporan</a></li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <p>© 2024 Sistem Inventaris</p>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <div>
+                <h1>Pengecekan Fisik Barang</h1>
+                <p>Catat kondisi dan jumlah barang saat pengecekan lapangan</p>
+            </div>
+        </div>
+        
+        <!-- Container untuk tabel -->
+        <div class="table-container">
+            <!-- Konten akan diisi oleh JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Modal untuk Edit -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <!-- Konten modal akan diisi oleh JavaScript -->
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

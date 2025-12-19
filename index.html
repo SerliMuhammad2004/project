@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Inventaris - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>Sistem Inventaris</h1>
+            <p>Kelola Barang Anda</p>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li><a href="#" onclick="navigateTo('dashboard')" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="#" onclick="navigateTo('inventaris')"><i class="fas fa-boxes"></i> Inventaris</a></li>
+            <li><a href="#" onclick="navigateTo('pengecekan')"><i class="fas fa-clipboard-check"></i> Pengecekan</a></li>
+            <li><a href="#" onclick="navigateTo('laporan')"><i class="fas fa-chart-bar"></i> Laporan</a></li>
+        </ul>
+        
+        <div class="sidebar-footer">
+            <p>© 2024 Sistem Inventaris</p>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <div>
+                <h1>Dashboard</h1>
+                <p>Ringkasan data inventaris</p>
+            </div>
+        </div>
+        
+        <!-- Ringkasan Statistik -->
+        <div class="stats-cards">
+            <div class="card border-left-blue">
+                <h3>Total Barang</h3>
+                <div class="value" id="total-barang">78</div>
+                <p>Semua jenis barang inventaris</p>
+            </div>
+            
+            <div class="card border-left-green">
+                <h3>Kondisi Baik</h3>
+                <div class="value" id="kondisi-baik">73</div>
+                <p>Barang dalam kondisi baik</p>
+            </div>
+            
+            <div class="card border-left-orange">
+                <h3>Rusak Ringan</h3>
+                <div class="value" id="rusak-ringan">3</div>
+                <p>Barang dengan kerusakan ringan</p>
+            </div>
+            
+            <div class="card border-left-red">
+                <h3>Rusak Berat</h3>
+                <div class="value" id="rusak-berat">2</div>
+                <p>Barang dengan kerusakan berat</p>
+            </div>
+        </div>
+        
+        <!-- Ringkasan Persentase -->
+        <div class="table-container">
+            <h2>Ringkasan Kondisi Barang</h2>
+            <div class="summary-charts">
+                <div class="chart-container">
+                    <div class="chart-title">Distribusi Kondisi Barang</div>
+                    <div class="chart">
+                        <div class="chart-bar">
+                            <div class="bar-label">Baik</div>
+                            <div class="bar-container">
+                                <div class="bar-fill bar-green" style="width: 94%">
+                                    <span class="bar-percentage">94%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar-label">Rusak Ringan</div>
+                            <div class="bar-container">
+                                <div class="bar-fill bar-orange" style="width: 4%">
+                                    <span class="bar-percentage">4%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart-bar">
+                            <div class="bar-label">Rusak Berat</div>
+                            <div class="bar-container">
+                                <div class="bar-fill bar-red" style="width: 2%">
+                                    <span class="bar-percentage">2%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h3><i class="fas fa-info-circle"></i> Informasi</h3>
+                    <ul>
+                        <li><strong>Total Item:</strong> 78 barang</li>
+                        <li><strong>Barang Baik:</strong> 73 item (94%)</li>
+                        <li><strong>Perlu Perbaikan:</strong> 5 item (6%)</li>
+                        <li><strong>Update Terakhir:</strong> 15 Desember 2024</li>
+                    </ul>
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Lakukan pengecekan rutin untuk memastikan kondisi barang tetap optimal.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    <!-- Modal untuk Edit -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <!-- Konten modal akan diisi oleh JavaScript -->
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
