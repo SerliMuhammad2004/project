@@ -17,18 +17,18 @@ sudo apt install sleuthkit extundelete binutils xxd autopsy -y
 ---
 
 ### Tahap 2: Membuat Bukti Digital (Simulasi File .dd)
-Karena dosen belum memberikan file, kita akan membuat file `linux_forensik_p6.dd` sendiri yang memiliki data terhapus di dalamnya.
+Karena dosen belum memberikan file, kita akan membuat file `nama_file.dd` sendiri yang memiliki data terhapus di dalamnya.
 
 ```bash
 # 1. Buat file kosong 100MB
-dd if=/dev/zero of=linux_forensik_p6.dd bs=1M count=100
+dd if=/dev/zero of=nama_file.dd bs=1M count=100
 
 # 2. Format menjadi sistem file ext4
 mkfs.ext4 linux_forensik_p6.dd
 
 # 3. Mount ke folder temporary untuk mengisi data
 mkdir -p ./mnt_tugas
-sudo mount -o loop linux_forensik_p6.dd ./mnt_tugas
+sudo mount -o loop nama_file.dd ./mnt_tugas
 
 # 4. Buat 3 file (Barang Bukti)
 sudo sh -c "echo 'Data Rahasia 01' > ./mnt_tugas/dokumen_penting.txt"
@@ -49,15 +49,15 @@ sudo umount ./mnt_tugas
 #### Langkah 1: Verifikasi Filesystem
 **Tujuan:** Memastikan file image benar dan mengecek status filesystem.
 ```bash
-file linux_forensik_p6.dd
-fsstat linux_forensik_p6.dd
+file nama_file.dd
+fsstat nama_file.dd
 ```
 * **📸 SCREENSHOT 1:** Hasil `fsstat` yang menampilkan informasi umum filesystem.
 
 #### Langkah 2: Baca Superblock & Hitung Persentase
 **Tujuan:** Mengambil data teknis disk.
 ```bash
-dumpe2fs linux_forensik_p6.dd | head -50
+dumpe2fs nama_file.dd | head -50
 ```
 * Cari **Block count** dan **Free blocks**.
 * **Rumus:** $\text{Persentase Terpakai} = \frac{\text{Block count} - \text{Free blocks}}{\text{Block count}} \times 100$
@@ -66,7 +66,7 @@ dumpe2fs linux_forensik_p6.dd | head -50
 #### Langkah 3: List Inode Terhapus
 **Tujuan:** Mencari "jejak" file yang sudah hilang.
 ```bash
-ils linux_forensik_p6.dd -r > deleted_inodes.txt
+ils nama_file.dd -r > deleted_inodes.txt
 cat deleted_inodes.txt
 ```
 * **📸 SCREENSHOT 3:** Daftar nomor Inode yang muncul di terminal (pilih 3 nomor untuk langkah berikutnya).
@@ -74,7 +74,7 @@ cat deleted_inodes.txt
 #### Langkah 4: Analisis Inode Spesifik & Konversi Waktu
 **Tujuan:** Mengetahui kapan file dihapus. Misal kita pilih Inode nomor **12**.
 ```bash
-istat linux_forensik_p6.dd 12
+istat nama_file.dd 12
 ```
 * Lihat bagian `i_dtime` (Unix timestamp). Konversi ke waktu manusia:
 ```bash
@@ -85,7 +85,7 @@ date -d @[isi_angka_timestamp_tadi]
 #### Langkah 5: Ekstrak File & Identifikasi Magic Bytes
 **Tujuan:** Mengambil kembali isi file secara manual dan cek tipenya.
 ```bash
-icat linux_forensik_p6.dd 12 > file_recovery_1
+icat nama_file.dd 12 > file_recovery_1
 xxd file_recovery_1 | head -n 1
 ```
 * **📸 SCREENSHOT 5:** Hasil `xxd` (kode hex) yang menunjukkan Magic Bytes file tersebut.
@@ -94,7 +94,7 @@ xxd file_recovery_1 | head -n 1
 **Tujuan:** Mengembalikan semua file secara otomatis.
 ```bash
 mkdir output
-sudo extundelete linux_forensik_p6.dd --restore-all --output-dir output
+sudo extundelete nama_file.dd --restore-all --output-dir output
 ```
 * **📸 SCREENSHOT 6:** Proses eksekusi `extundelete` di terminal.
 
@@ -102,6 +102,6 @@ sudo extundelete linux_forensik_p6.dd --restore-all --output-dir output
 **Tujuan:** Verifikasi visual.
 1. Jalankan: `sudo autopsy`
 2. Buka browser di Ubuntu (Firefox) ke: `http://localhost:9999/autopsy/`
-3. Buat **New Case**, Add Image `linux_forensik_p6.dd`, lalu buka tab **Deleted Files**.
+3. Buat **New Case**, Add Image `nama_file.dd`, lalu buka tab **Deleted Files**.
 * **📸 SCREENSHOT 7:** Tampilan browser yang menunjukkan file-file merah (deleted).
 
