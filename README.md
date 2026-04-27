@@ -69,6 +69,13 @@ dumpe2fs nama_file.dd | head -50
 ils nama_file.dd -r > deleted_inodes.txt
 cat deleted_inodes.txt
 ```
+
+ATAU
+
+```bash
+ils nama_file.dd -r
+```
+
 * **📸 SCREENSHOT 3:** Daftar nomor Inode yang muncul di terminal (pilih 3 nomor untuk langkah berikutnya).
 
 #### Langkah 4: Analisis Inode Spesifik & Konversi Waktu
